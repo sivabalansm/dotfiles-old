@@ -21,7 +21,7 @@ export PS1="[\[\e[1;32m\]\u\[\e[m\]\[\e[1;32m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\] \
 export FZF_DEFAULT_COMMAND='find .'
 
 # fuzz directories
-function fzd {
+function fd {
 		pwd=$(pwd)
 		if [ -n "$1" ]
 		then
