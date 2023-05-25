@@ -17,6 +17,52 @@ export PATH="$PATH:$HOME/.local/bin"
 #My prompt with color
 export PS1="[\[\e[1;32m\]\u\[\e[m\]\[\e[1;32m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\] \[\e[1;34m\]\W\[\e[m\]]\\$ "
 
+# add hidden files to fzf
+export FZF_DEFAULT_COMMAND='find .'
+
+# fuzz directories
+function fzd {
+		pwd=$(pwd)
+		if [ -n "$1" ]
+		then
+			cd $1
+			path=$(fzf)
+			if [ -f "$path" ]
+			then
+				file_dir=$(echo $path | rev | sed 's/[^/]\+\///' | rev)
+				cd $file_dir
+			elif [ -d "$path" ]
+			then
+				cd $path
+			else
+				cd $pwd
+			fi
+		elif [ "$(find $pwd -type d)" = "$pwd" ]
+		then
+			cd /
+			path=$(fzf)
+			if [ -f "$path" ]
+			then
+				file_dir=$(echo $path | rev | sed 's/[^/]\+\///' | rev)
+				cd $file_dir
+			elif [ -d "$path" ]
+			then
+				cd $path
+			else
+				cd $pwd
+			fi
+		else
+			path=$(fzf)
+			if [ -f "$path" ]
+			then
+				file_dir=$(echo $path | rev | sed 's/[^/]\+\///' | rev)
+				cd $file_dir
+			elif [ -d "$path" ]
+			then
+				cd $path
+			fi
+		fi
+}
 
 #infinite history
 HISTZIE=-1
