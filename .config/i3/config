@@ -30,13 +30,13 @@ client.unfocused	#133456 #5f676a #ffffff #484e50		#000000
 client.focused_inactive #333333 #5f676a #ffffff #484e50		#5f676a
 
 # set i3 bar
-#bar {
-#	position top
-#        status_command i3status
-#	separator_symbol " | "
-#	font pango:SFNS Display 13
-#}
-exec_always --no-startup-id pgrep polybar && pkill polybar ; polybar || polybar &
+bar {
+	position top
+        status_command i3status
+	separator_symbol " | "
+	font pango:SFNS Display 13
+}
+#exec_always --no-startup-id pgrep polybar && pkill polybar ; polybar || polybar &
 
 # set main modifier key
 set $mod Mod1
@@ -50,7 +50,8 @@ bindsym $mod+t exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+q kill
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -modi "drun" -show drun
+#bindsym $mod+d exec rofi -modi "drun" -show drun
+bindsym $mod+d exec dmenu_run
 
 # change window focus
 bindsym $mod+h focus left
@@ -99,11 +100,6 @@ mode "resize" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-	
-
-	# black-arch mode
-#	bindsym $mod+a mode "black-arch"
-  
 
         # back to normal: Enter or Escape
 	bindsym q mode "default"
