@@ -40,6 +40,7 @@ bar {
 
 # set main modifier key
 set $mod Mod1
+set $win Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -169,7 +170,8 @@ bindsym $mod+Shift+q exec $HOME/scripts/bash/dmenu_power/main.sh
 bindsym $mod+Shift+z exec [ $(echo -e "Yes\nNo" | dmenu -i -p "Do you want to exit i3wm") = "Yes" ] && i3-msg exit
 
 # temporary lock on computer
-bindsym $mod+Shift+x exec i3lock --color 2f343f
+bindsym $mod+Shift+x exec i3lock --color 000000 
+#2f343f
 
 # pulse audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # increase sound volume bindsym 
@@ -188,7 +190,18 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && xbacklight > $HOME/.config
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && xbacklight > $HOME/.config/data/brightness && killall -SIGUSR1 i3status 
 
 # execute keynav on startup $mod+m
-exec_always keynav
+# exec_always keynav
+# keys to mouse
+set $speed 20
+bindsym $win+h exec xdotool mousemove_relative -- -$speed 0
+bindsym $win+j exec xdotool mousemove_relative 0 $speed 
+bindsym $win+k exec xdotool mousemove_relative 0 -$speed 
+bindsym $win+l exec xdotool mousemove_relative $speed 0
+bindsym $win+u exec xdotool click 1
+bindsym $win+i exec xdotool click 3
+bindsym $win+Shift+j exec xdotool click --repeat 3 5
+bindsym $win+Shift+k exec xdotool click --repeat 3 4
+bindsym $win+Shift+h exec xdotool mousemove 7680 0
 
 # start notification server
 exec_always dunst &
@@ -217,7 +230,7 @@ bindsym $mod+Shift+t exec $HOME/scripts/bash/dmenu_tools/main.sh
 # /etc/X11/xorg.conf.d/00-keyboard.conf --> localectl --no-convert set-x11-keymap us,ca pc105 ,fr-legacy grp:caps_toggle
 
 # set prefered wallpaper
-# exec_always xwallpaper --maximize $HOME/Pictures/wallpapers/morning_landscape.jpg
-exec_always $HOME/scripts/bash/walladapt/main.sh
+exec_always xwallpaper --maximize $HOME/Pictures/wallpapers/morning_landscape.jpg
+#exec_always $HOME/scripts/bash/walladapt/main.sh
 
 # Temporary binds
