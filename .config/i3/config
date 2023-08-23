@@ -170,7 +170,7 @@ bindsym $mod+Shift+q exec $HOME/scripts/bash/dmenu_power/main.sh
 bindsym $mod+Shift+z exec [ $(echo -e "Yes\nNo" | dmenu -i -p "Do you want to exit i3wm") = "Yes" ] && i3-msg exit
 
 # temporary lock on computer
-bindsym $mod+Shift+x exec i3lock --color 000000 
+bindsym $mod+Shift+x exec i3lock --color 000000 && xset dpms force off
 #2f343f
 
 # pulse audio controls
@@ -192,16 +192,22 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && xbacklight > $HOME/.conf
 # execute keynav on startup $mod+m
 # exec_always keynav
 # keys to mouse
-set $speed 20
-bindsym $win+h exec xdotool mousemove_relative -- -$speed 0
-bindsym $win+j exec xdotool mousemove_relative 0 $speed 
-bindsym $win+k exec xdotool mousemove_relative 0 -$speed 
-bindsym $win+l exec xdotool mousemove_relative $speed 0
-bindsym $win+u exec xdotool click 1
-bindsym $win+i exec xdotool click 3
-bindsym $win+Shift+j exec xdotool click --repeat 3 5
-bindsym $win+Shift+k exec xdotool click --repeat 3 4
-bindsym $win+Shift+h exec xdotool mousemove 7680 0
+set $speed 16
+bindsym $win+y exec xdotool mousemove_relative -- -$speed 0
+bindsym $win+u exec xdotool mousemove_relative 0 $speed 
+bindsym $win+i exec xdotool mousemove_relative 0 -$speed 
+bindsym $win+o exec xdotool mousemove_relative $speed 0
+bindsym $win+7 exec xdotool click 1
+bindsym $win+8 exec xdotool click 3
+bindsym $win+Shift+u exec xdotool click --repeat 3 5
+bindsym $win+Shift+i exec xdotool click --repeat 3 4
+bindsym $win+Shift+o exec xdotool mousemove 7680 0
+
+# keys to shortcut arrow keys
+bindsym --release $win+h exec --no-startup-id xdotool key Left
+bindsym --release $win+j exec --no-startup-id xdotool key Down
+bindsym --release $win+k exec --no-startup-id xdotool key Up
+bindsym --release $win+l exec --no-startup-id xdotool key Right
 
 # start notification server
 exec_always dunst &
@@ -230,7 +236,8 @@ bindsym $mod+Shift+t exec $HOME/scripts/bash/dmenu_tools/main.sh
 # /etc/X11/xorg.conf.d/00-keyboard.conf --> localectl --no-convert set-x11-keymap us,ca pc105 ,fr-legacy grp:caps_toggle
 
 # set prefered wallpaper
-exec_always xwallpaper --maximize $HOME/Pictures/wallpapers/morning_landscape.jpg
+#exec_always xwallpaper --maximize $HOME/pictures/wallpapers/morning_landscape.jpg
+exec_always xwallpaper --maximize $HOME/pictures/wallpapers/gargantua.png
 #exec_always $HOME/scripts/bash/walladapt/main.sh
 
 # Temporary binds
