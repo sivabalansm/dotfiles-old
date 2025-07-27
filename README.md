@@ -1,4 +1,5 @@
 # Dotfiles - Configuration for the software I use
+> I don't use these set of dotfiles anymore, check out my latest dotfiles repo
 The default location for these configs are in the home folder. The folders and files represent where they would be located in the home folder so the root folder is $HOME which is where the root of this repo should be placed
 
 ## .tmux.conf - Tmux
